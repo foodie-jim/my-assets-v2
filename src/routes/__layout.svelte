@@ -3,3 +3,7 @@
 </script>
 
 <slot />
+
+<style>
+	
+</style>
