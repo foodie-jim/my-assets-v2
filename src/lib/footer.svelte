@@ -2,7 +2,7 @@
 </script>
 
 <div>
-	<h1>This is a Footer panel</h1>
+	<h1>This is Home Footer</h1>
 </div>
 
 <style>

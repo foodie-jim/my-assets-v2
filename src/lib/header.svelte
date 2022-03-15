@@ -2,7 +2,7 @@
 </script>
 
 <header>
-	<h1>This is a Head panel</h1>
+	<h1>This is Home Head</h1>
 </header>
 
 <style>
