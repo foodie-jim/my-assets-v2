@@ -1,14 +1,18 @@
 <script>
-	import Header from '$lib/header.svelte';
-	import Footer from '$lib/footer.svelte';
+	import Header from '$components/header.svelte';
+	import Footer from '$components/footer.svelte';
 	import '$src/app.css';
 </script>
 
-<Header />
-<main>
-	<slot />
-</main>
-<Footer />
+<svelte:head>
+	<title>my-assets</title>
+</svelte:head>
+
+<Header container="default-container" />
+
+<slot container="default-container" />
+
+<Footer container="default-container" />
 
 <style>
 </style>
