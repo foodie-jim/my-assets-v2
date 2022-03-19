@@ -3,8 +3,8 @@
 </script>
 
 <div class="{container} footer">
-	<p class="hidden md:block text-bold">Author - jim_kim_</p>
-	<p class="hidden md:block">This is a Jim's Playground</p>
+	<p class="hidden sm:block text-bold">Author - jim_kim_</p>
+	<p class="hidden sm:block">This is a Jim's Playground</p>
 	<a class="link" href="mailto: hjman.kim@gmail.com">Email</a>
 	<a class="link" href="https://www.linkedin.com/in/hjmankim/">LinkedIn</a>
 </div>
