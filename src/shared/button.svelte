@@ -10,7 +10,7 @@
 
 <style lang="postcss">
 	.none {
-		@apply border-transparent bg-transparent text-slate-900 mx-0 px-0 hover:bg-slate-900 hover:text-slate-300;
+		@apply border-transparent bg-transparent text-slate-900 px-0 hover:bg-slate-900 hover:text-slate-300;
 	}
 	:global(.dark) .none {
 		@apply text-slate-300 hover:bg-slate-300 hover:text-slate-900;
