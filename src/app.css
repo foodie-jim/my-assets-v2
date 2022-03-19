@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+	@apply dark:bg-zinc-900 bg-zinc-300;
+}
+
+h1,
+h2,
+h3,
+h4,
+a,
+p,
+li {
+	@apply dark:text-slate-300 text-slate-900 font-mono;
+}
+
+.default-container {
+	@apply container mx-auto w-full md:w-640 lg:w-768 xl:w-1024 2xl:w-1280 3xl:w-1536;
+}
