@@ -11,7 +11,7 @@
 
 <style lang="postcss">
 	.footer {
-		@apply flex justify-around my-4 py-2 border-t border-slate-900 text-sm;
+		@apply flex justify-around border-t border-slate-900 text-sm my-4 py-2;
 	}
 	:global(.dark) .footer {
 		@apply border-slate-300;
