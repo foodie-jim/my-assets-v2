@@ -17,8 +17,9 @@ const config = {
 				alias: {
 					// these are the aliases and paths to them
 					$src: path.resolve('./src'),
-					$shared: path.resolve('./src/shared'),
-					$components: path.resolve('./src/components')
+					$lib: path.resolve('./src/lib'),
+					$shared: path.resolve('./src/lib/shared'),
+					$components: path.resolve('./src/lib/components')
 				}
 			}
 		}
