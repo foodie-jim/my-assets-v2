@@ -1,7 +1,12 @@
-<script>
+<script lang="ts">
+	import { Login } from '$stores/login';
+
 	export let type = 'primary';
 	export let size = 'lg';
 	export let shape = 'rounded';
+
+	const test = new Login();
+	test.testlogin();
 </script>
 
 <button class="{type} {size} {shape} border-2 mx-2 px-4" on:click>
