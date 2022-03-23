@@ -1,5 +1,6 @@
-<script>
+<script lang="ts">
 	import Button from '$shared/button.svelte';
+	import Avatars from '$shared/avatars.svelte';
 
 	export let container = 'default-container';
 
@@ -30,7 +31,7 @@
 	</svg>
 	<h1 class="hidden sm:block mx-2 text-3xl">my-assets</h1>
 	<div class="flex-1 flex justify-end">
-		<Button shape="rounded-full" type="none" on:click={() => handleTheme()}>
+		<Avatars shape="rounded-full" type="none" on:click={() => handleTheme()}>
 			<svg
 				class="dark:hidden w-8 h-8"
 				fill="none"
@@ -59,9 +60,9 @@
 					d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
 				/>
 			</svg>
-		</Button>
-		<Button shape="rounded-lg">Login</Button>
-		<Button shape="rounded-lg">Sign-in</Button>
+		</Avatars>
+		<Button>Login</Button>
+		<Button>Sign-in</Button>
 	</div>
 </div>
 

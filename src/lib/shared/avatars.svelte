@@ -1,12 +1,10 @@
 <script lang="ts">
-	import { ComponentSize, ComponentColors, ButtonType } from '$shared/enums';
-
-	export let type = ButtonType.Text;
-	export let size = ComponentSize.Default;
-	export let colors = ComponentColors.Primary;
+	export let type:string = 'primary';
+	export let size = 'lg';
+	export let shape = 'rounded';
 </script>
 
-<button class="{type} {size} {colors} mx-2 px-4" on:click>
+<button class="{type} {size} {shape} mx-2 px-4" on:click>
 	<slot />
 </button>
 
