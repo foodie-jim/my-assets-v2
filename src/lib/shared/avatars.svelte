@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let type:string = 'primary';
+	export let type: string = 'primary';
 	export let size = 'lg';
 	export let shape = 'rounded';
 </script>

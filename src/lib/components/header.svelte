@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from '$shared/button.svelte';
 	import Avatars from '$shared/avatars.svelte';
+	import { ComponentSize, ComponentColors, ButtonType } from '$shared/enums';
 
 	export let container = 'default-container';
 
@@ -61,8 +62,8 @@
 				/>
 			</svg>
 		</Avatars>
-		<Button>Login</Button>
-		<Button>Sign-in</Button>
+		<Button size={ComponentSize.Large}>Login</Button>
+		<Button size={ComponentSize.Large}>Sign-in</Button>
 	</div>
 </div>
 
