@@ -11,12 +11,6 @@
 </button>
 
 <style lang="postcss">
-	.none {
-		@apply border-transparent bg-transparent text-slate-900 px-0 hover:bg-slate-900 hover:text-slate-300 ripple-bg-slate-900;
-	}
-	:global(.dark) .none {
-		@apply text-slate-300 hover:bg-slate-300 hover:text-slate-900 ripple-bg-slate-300;
-	}
 	.primary {
 		@apply bg-blue-700 text-slate-300 hover:bg-blue-900 ripple-bg-blue-900;
 	}

@@ -17,7 +17,8 @@ enum ComponentColors {
 enum ButtonType {
 	Text = 'text',
 	TextWithIcon = 'text-with-icon',
-	Icon = 'icon'
+	Icon = 'icon',
+	Image = 'image'
 }
 
 export { ComponentSize, ComponentColors, ButtonType };

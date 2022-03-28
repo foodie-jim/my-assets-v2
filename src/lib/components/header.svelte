@@ -32,9 +32,9 @@
 	</svg>
 	<h1 class="hidden sm:block mx-2 text-3xl">my-assets</h1>
 	<div class="flex-1 flex justify-end">
-		<Avatars shape="rounded-full" type="none" on:click={() => handleTheme()}>
+		<Avatars size={ComponentSize.Large} on:click={() => handleTheme()}>
 			<svg
-				class="dark:hidden w-8 h-8"
+				class="dark:hidden w-8 h-8 mx-auto"
 				fill="none"
 				stroke="currentColor"
 				viewBox="0 0 24 24"
@@ -48,7 +48,7 @@
 				/>
 			</svg>
 			<svg
-				class="hidden dark:block w-8 h-8"
+				class="hidden dark:block w-8 h-8 mx-auto"
 				fill="none"
 				stroke="currentColor"
 				viewBox="0 0 24 24"
