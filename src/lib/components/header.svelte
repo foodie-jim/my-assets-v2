@@ -1,7 +1,8 @@
 <script lang="ts">
 	import Button from '$shared/button.svelte';
 	import Avatars from '$shared/avatars.svelte';
-	import { ComponentSize, ComponentColors, ButtonType } from '$shared/enums';
+	import { ComponentSize } from '$shared/enums';
+	import { goto } from '$app/navigation';
 
 	export let container = 'default-container';
 
@@ -62,8 +63,8 @@
 				/>
 			</svg>
 		</Avatars>
-		<Button size={ComponentSize.Large}>Login</Button>
-		<Button size={ComponentSize.Large}>Sign-in</Button>
+		<Button size={ComponentSize.Large} on:click={() => goto('./login')}>Login</Button>
+		<Button size={ComponentSize.Large} on:click={() => goto('./sign-in')}>Sign-in</Button>
 	</div>
 </div>
 
