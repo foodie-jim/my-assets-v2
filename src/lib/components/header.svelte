@@ -45,24 +45,19 @@
 	};
 
 	const handleUserTitle = () => {
-
 		// TODO Temperary sign out, but need to popup sign out menu
 
 		signOutUser().then(() => {
 			isDisplaySignIn = true;
 			goto('./');
-		});		
+		});
 	};
 
 	const getUserName = (user) => {
-
 		if (user) {
-
 			return `${user.email} Welcome!`;
-
 		} else {
-
-			return "Unknown user";
+			return 'Unknown user';
 		}
 	};
 </script>
@@ -119,9 +114,15 @@
 		<Button
 			size={ComponentSize.Large}
 			isDisplay={isDisplaySignIn}
-			on:click={() => goto('./sign-in')}>Sign-in
+			on:click={() => goto('./sign-in')}
+			>Sign-in
 		</Button>
-		<span class="ml-2 cursor-pointer text-lg hover:underline self-end {isDisplaySignIn ? 'hidden' : 'block'}" on:click={handleUserTitle}>
+		<span
+			class="ml-2 cursor-pointer text-lg hover:underline self-end {isDisplaySignIn
+				? 'hidden'
+				: 'block'}"
+			on:click={handleUserTitle}
+		>
 			{getUserName(currentUser)}
 		</span>
 	</div>

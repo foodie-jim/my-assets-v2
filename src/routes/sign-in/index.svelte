@@ -9,7 +9,7 @@
 	let password = '';
 	let email = '';
 
-	const loginSubmit = (e: SubmitEvent) => {
+	const loginSubmit = (e) => {
 		signInUser(email, password).then(() => {
 			const form = e.target as HTMLFormElement;
 			form.reset();

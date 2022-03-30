@@ -4,7 +4,7 @@
 	export let type: ButtonType = ButtonType.Text;
 	export let size: ComponentSize = ComponentSize.Medium;
 	export let colors: ComponentColors = ComponentColors.Primary;
-	export let isDisplay: boolean = true;
+	export let isDisplay = true;
 </script>
 
 <button class="{type} {size} {colors} {isDisplay ? 'block' : 'hidden'} rounded mx-2 px-4" on:click>

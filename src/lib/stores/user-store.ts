@@ -26,12 +26,12 @@ const signInUser = (email: string, password: string) => {
 
 const signOutUser = () => {
 	return signOut(auth)
-    .then(() => {
-      console.log('[user-store] User sign out.')
-    })
-    .catch(err => {
-      console.log(err.message)
-    })
+		.then(() => {
+			console.log('[user-store] User sign out.');
+		})
+		.catch((err) => {
+			console.log(err.message);
+		});
 };
 
 export { signInUser, signOutUser, currentUserStore };
