@@ -7,13 +7,13 @@ import {
 	onAuthStateChanged
 } from 'firebase/auth';
 
-export class Login {
+export class UserStore {
 	constructor() {
 		console.info(`${this.constructor.name} is created`);
 	}
 
-	testlogin() {
-		signInWithEmailAndPassword(auth, 'hjman.kim@gmail.com', 'password1234')
+	signIn(email, password) {
+		signInWithEmailAndPassword(auth, email, password)
 			.then((cred) => {
 				console.log('user logged in:', cred.user);
 			})

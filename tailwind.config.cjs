@@ -15,9 +15,9 @@ module.exports = {
 				'3xl': '1920px'
 			}
 		},
-		ripple: theme => ({
+		ripple: (theme) => ({
 			colors: theme('colors')
-		}),
+		})
 	},
 	plugins: [require('tailwindcss-ripple')()]
 };

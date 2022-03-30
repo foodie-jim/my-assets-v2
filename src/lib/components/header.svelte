@@ -17,9 +17,10 @@
 	};
 </script>
 
-<div class="{container} flex h-9 my-4">
+<div class="{container} header">
 	<svg
-		class="w-9 h-9 stroke-slate-900 dark:stroke-slate-300"
+		on:click={() => goto('./')}
+		class="w-9 h-9 stroke-slate-900 dark:stroke-slate-300 cursor-pointer"
 		fill="none"
 		viewBox="0 0 24 24"
 		xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +32,9 @@
 			d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
 		/>
 	</svg>
-	<h1 class="hidden sm:block mx-2 text-3xl">my-assets</h1>
+	<h1 class="hidden sm:block mx-2 text-3xl cursor-pointer" on:click={() => goto('./')}>
+		my-assets
+	</h1>
 	<div class="flex-1 flex justify-end">
 		<Avatars size={ComponentSize.Large} on:click={() => handleTheme()}>
 			<svg
@@ -63,10 +66,15 @@
 				/>
 			</svg>
 		</Avatars>
-		<Button size={ComponentSize.Large} on:click={() => goto('./login')}>Login</Button>
 		<Button size={ComponentSize.Large} on:click={() => goto('./sign-in')}>Sign-in</Button>
 	</div>
 </div>
 
-<style>
+<style lang="postcss">
+	.header {
+		@apply flex border-b border-slate-900 my-4 py-2;
+	}
+	:global(.dark) .header {
+		@apply border-slate-300;
+	}
 </style>

@@ -26,6 +26,8 @@ const config: FirebaseOptions = {
 
 initializeApp(config);
 
+console.info('[firebase-adapter.ts] Initialized');
+
 const db = getFirestore();
 const auth = getAuth();
 

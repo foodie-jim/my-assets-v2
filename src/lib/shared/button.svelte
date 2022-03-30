@@ -6,7 +6,7 @@
 	export let colors: ComponentColors = ComponentColors.Primary;
 </script>
 
-<button class="{type} {size} {colors} rounded mx-2 px-4 " on:click>
+<button class="{type} {size} {colors} rounded mx-2 px-4" on:click>
 	<slot />
 </button>
 
