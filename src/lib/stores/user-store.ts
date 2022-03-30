@@ -7,26 +7,31 @@ import {
 	onAuthStateChanged
 } from 'firebase/auth';
 import { writable } from 'svelte/store';
-import type { User } from 'firebase/auth';
+import type { UserCredential, User } from 'firebase/auth';
 import type { Writable } from 'svelte/store';
 
 const currentUserStore: Writable<User> = writable(null);
 
 const signInUser = (email: string, password: string) => {
 	return signInWithEmailAndPassword(auth, email, password)
-		.then((cred) => {
+		.then((cred: UserCredential) => {
 			currentUserStore.set(<User>cred.user);
 			console.info(`[user-store] User ${cred.user.email} signed in.`);
+
+			return cred;
 		})
 		.catch((err) => {
 			currentUserStore.set(null);
 			console.error(err.message);
+
+			return err;
 		});
 };
 
 const signOutUser = () => {
 	return signOut(auth)
 		.then(() => {
+			currentUserStore.set(null);
 			console.log('[user-store] User sign out.');
 		})
 		.catch((err) => {

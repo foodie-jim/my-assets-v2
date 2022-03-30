@@ -1,6 +1,8 @@
 <script context="module" lang="ts">
 	import { goto } from '$app/navigation';
-	import { signInUser } from '$stores/user-store';
+	import { signInUser, currentUserStore } from '$stores/user-store';
+	import { onDestroy, onMount } from 'svelte';
+	import type { UserCredential } from 'firebase/auth';
 </script>
 
 <script lang="ts">
@@ -10,11 +12,18 @@
 	let email = '';
 
 	const loginSubmit = (e) => {
-		signInUser(email, password).then(() => {
-			const form = e.target as HTMLFormElement;
+		signInUser(email, password).then(handleUser);
+	};
+
+	const handleUser = (cred: UserCredential) => {
+
+		if (cred.user) {
+			const form = document.getElementById('sign-in-form') as HTMLFormElement;
 			form.reset();
 			goto('./');
-		});
+		} else {
+			console.error('[Sign-in] User not signed in.');
+		}
 	};
 </script>
 
@@ -27,7 +36,7 @@
 			Enter your credentials to access your account
 		</div>
 		<div class="mt-10">
-			<form on:submit|preventDefault={loginSubmit}>
+			<form id="sign-in-form" on:submit|preventDefault={loginSubmit}>
 				<div class="flex flex-col mb-5">
 					<label for="email" class="mb-1 text-xs tracking-wide">E-Mail Address:</label>
 					<div class="relative">
