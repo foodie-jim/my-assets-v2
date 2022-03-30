@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
 	import { goto } from '$app/navigation';
-	import { UserStore } from '$stores/user-store';
+	import { signInUser } from '$stores/user-store';
 </script>
 
 <script lang="ts">
@@ -9,11 +9,12 @@
 	let password = '';
 	let email = '';
 
-	const loginSubmit = () => {
-		const userStore = new UserStore();
-		userStore.signIn(email, password);
-
-		goto('./');
+	const loginSubmit = (e: SubmitEvent) => {
+		signInUser(email, password).then(() => {
+			const form = e.target as HTMLFormElement;
+			form.reset();
+			goto('./');
+		});
 	};
 </script>
 

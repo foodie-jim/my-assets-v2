@@ -3,8 +3,24 @@
 	import Avatars from '$shared/avatars.svelte';
 	import { ComponentSize } from '$shared/enums';
 	import { goto } from '$app/navigation';
+	import { signOutUser, currentUserStore } from '$stores/user-store';
+	import { onDestroy, onMount } from 'svelte';
 
 	export let container = 'default-container';
+	let isDisplaySignIn = true;
+
+	let currentUserSubscriber = null;
+	let currentUser = null;
+
+	onMount(() => {
+		currentUserSubscriber = currentUserStore.subscribe(handleUser);
+	});
+
+	onDestroy(() => {
+		if (currentUserSubscriber) {
+			currentUserSubscriber();
+		}
+	});
 
 	const handleTheme = () => {
 		if (localStorage.theme === 'light') {
@@ -13,6 +29,40 @@
 		} else {
 			document.documentElement.classList.remove('dark');
 			localStorage.theme = 'light';
+		}
+		console.info(`[Header] Theme has changed to ${localStorage.theme}`);
+	};
+
+	const handleUser = (user) => {
+		if (user) {
+			isDisplaySignIn = false;
+			currentUser = user;
+		} else {
+			currentUser = null;
+		}
+
+		console.log('[Header] User updated', user);
+	};
+
+	const handleUserTitle = () => {
+
+		// TODO Temperary sign out, but need to popup sign out menu
+
+		signOutUser().then(() => {
+			isDisplaySignIn = true;
+			goto('./');
+		});		
+	};
+
+	const getUserName = (user) => {
+
+		if (user) {
+
+			return `${user.email} Welcome!`;
+
+		} else {
+
+			return "Unknown user";
 		}
 	};
 </script>
@@ -36,7 +86,7 @@
 		my-assets
 	</h1>
 	<div class="flex-1 flex justify-end">
-		<Avatars size={ComponentSize.Large} on:click={() => handleTheme()}>
+		<Avatars size={ComponentSize.Large} on:click={handleTheme}>
 			<svg
 				class="dark:hidden w-8 h-8 mx-auto"
 				fill="none"
@@ -66,7 +116,14 @@
 				/>
 			</svg>
 		</Avatars>
-		<Button size={ComponentSize.Large} on:click={() => goto('./sign-in')}>Sign-in</Button>
+		<Button
+			size={ComponentSize.Large}
+			isDisplay={isDisplaySignIn}
+			on:click={() => goto('./sign-in')}>Sign-in
+		</Button>
+		<span class="ml-2 cursor-pointer text-lg hover:underline self-end {isDisplaySignIn ? 'hidden' : 'block'}" on:click={handleUserTitle}>
+			{getUserName(currentUser)}
+		</span>
 	</div>
 </div>
 
