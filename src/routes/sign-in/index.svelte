@@ -127,7 +127,7 @@
 		<div class="inline-flex items-center text-gray-700 font-medium text-xs text-center">
 			<div class="ml-2 text-slate-900 dark:text-slate-300">You don't have an account?</div>
 			<div
-				class="text-xs ml-2 text-blue-700 dark:text-blue-500 font-semibold"
+				class="text-xs ml-2 text-blue-700 dark:text-blue-500 font-semibold cursor-pointer hover:underline"
 				on:click={() => goto('./register')}
 			>
 				Register now
