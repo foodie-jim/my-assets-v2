@@ -1,7 +1,26 @@
-<script>
+<script lang="ts">
 	import Button from '$shared/button.svelte';
+	import Avatars from '$shared/avatars.svelte';
+	import { ComponentSize } from '$shared/enums';
+	import { goto } from '$app/navigation';
+	import { signOutUser, currentUserStore } from '$stores/user-store';
+	import { onDestroy, onMount } from 'svelte';
 
 	export let container = 'default-container';
+	let isDisplaySignIn = true;
+
+	let currentUserSubscriber = null;
+	let currentUser = null;
+
+	onMount(() => {
+		currentUserSubscriber = currentUserStore.subscribe(handleUser);
+	});
+
+	onDestroy(() => {
+		if (currentUserSubscriber) {
+			currentUserSubscriber();
+		}
+	});
 
 	const handleTheme = () => {
 		if (localStorage.theme === 'light') {
@@ -11,12 +30,42 @@
 			document.documentElement.classList.remove('dark');
 			localStorage.theme = 'light';
 		}
+		console.info(`[Header] Theme has changed to ${localStorage.theme}`);
+	};
+
+	const handleUser = (user) => {
+		if (user) {
+			isDisplaySignIn = false;
+			currentUser = user;
+		} else {
+			currentUser = null;
+		}
+
+		console.log('[Header] User updated', user);
+	};
+
+	const handleUserTitle = () => {
+		// TODO Temperary sign out, but need to popup sign out menu
+
+		signOutUser().then(() => {
+			isDisplaySignIn = true;
+			goto('./');
+		});
+	};
+
+	const getUserName = (user) => {
+		if (user) {
+			return `${user.email} Welcome!`;
+		} else {
+			return 'Unknown user';
+		}
 	};
 </script>
 
-<div class="{container} flex h-9 my-4">
+<div class="{container} header">
 	<svg
-		class="w-9 h-9 stroke-slate-900 dark:stroke-slate-300"
+		on:click={() => goto('./')}
+		class="w-9 h-9 stroke-slate-900 dark:stroke-slate-300 cursor-pointer"
 		fill="none"
 		viewBox="0 0 24 24"
 		xmlns="http://www.w3.org/2000/svg"
@@ -28,11 +77,13 @@
 			d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
 		/>
 	</svg>
-	<h1 class="hidden sm:block mx-2 text-3xl">my-assets</h1>
+	<h1 class="hidden sm:block mx-2 text-3xl cursor-pointer" on:click={() => goto('./')}>
+		my-assets
+	</h1>
 	<div class="flex-1 flex justify-end">
-		<Button shape="rounded-full" type="none" on:click={() => handleTheme()}>
+		<Avatars size={ComponentSize.Large} on:click={handleTheme}>
 			<svg
-				class="dark:hidden w-8 h-8"
+				class="dark:hidden w-8 h-8 mx-auto"
 				fill="none"
 				stroke="currentColor"
 				viewBox="0 0 24 24"
@@ -46,7 +97,7 @@
 				/>
 			</svg>
 			<svg
-				class="hidden dark:block w-8 h-8"
+				class="hidden dark:block w-8 h-8 mx-auto"
 				fill="none"
 				stroke="currentColor"
 				viewBox="0 0 24 24"
@@ -59,11 +110,29 @@
 					d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
 				/>
 			</svg>
+		</Avatars>
+		<Button
+			size={ComponentSize.Large}
+			isDisplay={isDisplaySignIn}
+			on:click={() => goto('./sign-in')}
+			>Sign-in
 		</Button>
-		<Button shape="rounded-lg">Login</Button>
-		<Button shape="rounded-lg">Sign-in</Button>
+		<span
+			class="ml-2 cursor-pointer text-lg hover:underline self-end {isDisplaySignIn
+				? 'hidden'
+				: 'block'}"
+			on:click={handleUserTitle}
+		>
+			{getUserName(currentUser)}
+		</span>
 	</div>
 </div>
 
-<style>
+<style lang="postcss">
+	.header {
+		@apply flex border-b border-slate-900 my-4 py-2;
+	}
+	:global(.dark) .header {
+		@apply border-slate-300;
+	}
 </style>

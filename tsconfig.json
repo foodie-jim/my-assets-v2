@@ -31,8 +31,9 @@
 			"$src": ["src"],
 			"$lib": ["src/lib"],
 			"$lib/*": ["src/lib/*"],
-			"$components": ["src/lib/components"],
-			"$utils": ["src/lib/utils"]
+			"$shared/*": ["src/lib/shared/*"],
+			"$components/*": ["src/lib/components/*"],
+			"$stores/*": ["src/lib/stores/*"]
 		}
 	},
 	"include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.svelte"]

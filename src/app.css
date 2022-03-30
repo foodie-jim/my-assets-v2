@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-	@apply dark:bg-zinc-900 bg-zinc-300;
+	@apply dark:bg-gray-900 bg-gray-300;
 }
 
 h1,
@@ -12,7 +12,8 @@ h3,
 h4,
 a,
 p,
-li {
+li,
+div {
 	@apply dark:text-slate-300 text-slate-900 font-mono;
 }
 

@@ -15,11 +15,11 @@ const config = {
 		vite: {
 			resolve: {
 				alias: {
-					// these are the aliases and paths to them
 					$src: path.resolve('./src'),
 					$lib: path.resolve('./src/lib'),
 					$shared: path.resolve('./src/lib/shared'),
-					$components: path.resolve('./src/lib/components')
+					$components: path.resolve('./src/lib/components'),
+					$stores: path.resolve('./src/lib/stores')
 				}
 			}
 		}
