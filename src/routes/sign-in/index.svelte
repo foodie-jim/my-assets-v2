@@ -10,7 +10,6 @@
 	let email = '';
 
 	const loginSubmit = () => {
-
 		const userStore = new UserStore();
 		userStore.signIn(email, password);
 
@@ -31,7 +30,9 @@
 				<div class="flex flex-col mb-5">
 					<label for="email" class="mb-1 text-xs tracking-wide">E-Mail Address:</label>
 					<div class="relative">
-						<div class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+						<div
+							class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400"
+						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								class="h-6 w-6 text-blue-500"
@@ -60,9 +61,7 @@
 					</div>
 				</div>
 				<div class="flex flex-col mb-6">
-					<label for="password" class="mb-1 text-xs sm:text-sm tracking-wide"
-						>Password:</label
-					>
+					<label for="password" class="mb-1 text-xs sm:text-sm tracking-wide">Password:</label>
 					<div class="relative">
 						<div
 							class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400"
