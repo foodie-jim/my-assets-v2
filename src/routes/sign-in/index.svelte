@@ -1,6 +1,7 @@
 <script context="module" lang="ts">
 	import { goto } from '$app/navigation';
 	import { signInUser, currentUserStore } from '$stores/user-store';
+	import { toastMessage } from '$shared/toast.svelte';
 	import { onDestroy, onMount } from 'svelte';
 	import type { UserCredential } from 'firebase/auth';
 </script>
@@ -10,18 +11,21 @@
 
 	let password = '';
 	let email = '';
+	let isSignInFailed = false;
 
 	const loginSubmit = (e) => {
 		signInUser(email, password).then(handleUser);
 	};
 
 	const handleUser = (cred: UserCredential) => {
-
 		if (cred.user) {
+			isSignInFailed = false;
 			const form = document.getElementById('sign-in-form') as HTMLFormElement;
 			form.reset();
+			toastMessage.success(`Hello ${cred.user.displayName}`);
 			goto('./');
 		} else {
+			isSignInFailed = true;
 			console.error('[Sign-in] User not signed in.');
 		}
 	};
@@ -32,9 +36,15 @@
 		class="flex flex-col bg-transparent px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-3xl w-50 max-w-md mx-auto"
 	>
 		<div class="font-medium self-center text-xl sm:text-3xl">Welcome Back</div>
-		<div class="mt-4 self-center text-xl sm:text-sm">
-			Enter your credentials to access your account
-		</div>
+		<p class="mt-4 self-center text-xl sm:text-sm {isSignInFailed ? 'hidden' : 'block'}">
+			Enter your credentials to access your account.
+		</p>
+		<p
+			class="mt-4 self-center text-xl sm:text-sm {!isSignInFailed ? 'hidden' : 'block'} 
+				font-bold text-red-900 dark:text-red-600"
+		>
+			Sign-in failed. Incorret credentials.
+		</p>
 		<div class="mt-10">
 			<form id="sign-in-form" on:submit|preventDefault={loginSubmit}>
 				<div class="flex flex-col mb-5">
