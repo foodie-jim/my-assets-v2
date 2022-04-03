@@ -34,8 +34,9 @@
 	export { toastMessage };
 </script>
 
-<script>
+<script lang="ts">
 	import { SvelteToast } from '@zerodevx/svelte-toast';
+	import { onMount } from 'svelte';
 
 	const options = {
 		duration: 4000, // duration of progress bar tween to the `next` value
@@ -49,9 +50,38 @@
 		classes: [] // user-defined classes
 	};
 
-    //TODO Make this reactive
-    let right = '60rem';
+	let right: string = '10rem';
+	let windowResizeEventTimer = null;
+
+	const handleResize = () => {
+		if (windowResizeEventTimer) {
+			clearTimeout(windowResizeEventTimer);
+		}
+		windowResizeEventTimer = setTimeout(() => {
+			if (window.innerWidth <= 640) {
+				right = '1rem';
+			} else if (window.innerWidth >= 640 && window.innerWidth < 768) {
+				right = (window.innerWidth - 640) / 2 + 'px';
+			} else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
+				right = (window.innerWidth - 640) / 2 + 'px';
+			} else if (window.innerWidth >= 1024 && window.innerWidth < 1280) {
+				right = (window.innerWidth - 768) / 2 + 'px';
+			} else if (window.innerWidth >= 1280 && window.innerWidth < 1536) {
+				right = (window.innerWidth - 1024) / 2 + 'px';
+			} else if (window.innerWidth >= 1536 && window.innerWidth < 1920) {
+				right = (window.innerWidth - 1280) / 2 + 'px';
+			} else if (window.innerWidth >= 1920) {
+				right = (window.innerWidth - 1536) / 2 + 'px';
+			}
+		}, 500);
+	};
+
+	onMount(() => {
+		handleResize();
+	});
 </script>
+
+<svelte:window on:resize={handleResize} />
 
 <div class="wrap" style="--toastContainerRight: {right}">
 	<SvelteToast {options} />
@@ -59,6 +89,6 @@
 
 <style>
 	.wrap {
-		--toastContainerTop: 6rem;
+		--toastContainerTop: 5.35rem;
 	}
 </style>
