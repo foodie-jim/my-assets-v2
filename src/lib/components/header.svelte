@@ -128,13 +128,22 @@
 			{getUserName(currentUser)}
 		</span>
 	</div>
+	<div class="w-full my-4">
+		<span class="menu-item" on:click={() => goto('./')}>Home</span>
+		<span class="menu-item" on:click={() => goto('./stocks')}>Stocks</span>
+		<span class="menu-item" on:click={() => goto('./exchange-rates')}>Exchange Rates</span>
+		<span class="menu-item" on:click={() => goto('./coins')}>Coins</span>
+	  </div>
 </div>
 
 <style lang="postcss">
 	.header {
-		@apply flex border-b border-slate-900 my-4 py-2;
+		@apply flex flex-wrap border-b border-slate-900 my-4 py-2;
 	}
 	:global(.dark) .header {
 		@apply border-slate-300;
+	}
+	.menu-item {
+		@apply hover:underline hover:text-blue-900 hover:dark:text-blue-800 mr-4 cursor-pointer
 	}
 </style>
