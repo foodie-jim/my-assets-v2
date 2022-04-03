@@ -3,5 +3,5 @@
 </script>
 
 <div class={container}>
-	<h1 class="text-3xl font-bold">Stocks</h1>
+	<h1 class="text-3xl font-bold">Coins</h1>
 </div>
