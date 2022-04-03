@@ -1,18 +1,12 @@
-import { db, auth } from '$stores/firebase-adapter';
-import {
-	getAuth,
-	createUserWithEmailAndPassword,
-	signInWithEmailAndPassword,
-	signOut,
-	onAuthStateChanged
-} from 'firebase/auth';
+import { auth } from '$stores/firebase-adapter';
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { writable } from 'svelte/store';
 import type { UserCredential, User } from 'firebase/auth';
 import type { Writable } from 'svelte/store';
 
 const currentUserStore: Writable<User> = writable(null);
 
-const signInUser = (email: string, password: string) => {
+const signInUser = async (email: string, password: string) => {
 	return signInWithEmailAndPassword(auth, email, password)
 		.then((cred: UserCredential) => {
 			currentUserStore.set(<User>cred.user);
@@ -28,7 +22,7 @@ const signInUser = (email: string, password: string) => {
 		});
 };
 
-const signOutUser = () => {
+const signOutUser = async () => {
 	return signOut(auth)
 		.then(() => {
 			currentUserStore.set(null);

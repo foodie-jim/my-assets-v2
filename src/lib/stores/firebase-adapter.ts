@@ -1,19 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import type { FirebaseOptions } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import {
-	getFirestore,
-	collection,
-	onSnapshot,
-	addDoc,
-	deleteDoc,
-	doc,
-	query,
-	where,
-	orderBy,
-	serverTimestamp,
-	updateDoc
-} from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 
 const config: FirebaseOptions = {
 	apiKey: 'AIzaSyAY7s8rOfi7RtefH3SvSSFn8g3u8wuOTks',

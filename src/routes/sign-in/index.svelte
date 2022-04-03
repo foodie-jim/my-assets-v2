@@ -1,8 +1,7 @@
 <script context="module" lang="ts">
 	import { goto } from '$app/navigation';
-	import { signInUser, currentUserStore } from '$stores/user-store';
+	import { signInUser } from '$stores/user-store';
 	import { toastMessage } from '$shared/toast.svelte';
-	import { onDestroy, onMount } from 'svelte';
 	import type { UserCredential } from 'firebase/auth';
 </script>
 
@@ -13,7 +12,7 @@
 	let email = '';
 	let isSignInFailed = false;
 
-	const loginSubmit = (e) => {
+	const loginSubmit = () => {
 		signInUser(email, password).then(handleUser);
 	};
 

@@ -6,6 +6,7 @@
 	import { signOutUser, currentUserStore } from '$stores/user-store';
 	import { onDestroy, onMount } from 'svelte';
 	import { toastMessage } from '$shared/toast.svelte';
+	import type { User } from 'firebase/auth';
 
 	export let container = 'default-container';
 	let isDisplaySignIn = true;
@@ -34,7 +35,7 @@
 		console.info(`[Header] Theme has changed to ${localStorage.theme}`);
 	};
 
-	const handleUser = (user) => {
+	const handleUser = (user: User) => {
 		if (user) {
 			isDisplaySignIn = false;
 			currentUser = user;
@@ -55,7 +56,7 @@
 		});
 	};
 
-	const getUserName = (user) => {
+	const getUserName = (user: User) => {
 		if (user) {
 			return `${user.email} Welcome!`;
 		} else {
@@ -133,7 +134,7 @@
 		<span class="menu-item" on:click={() => goto('./stocks')}>Stocks</span>
 		<span class="menu-item" on:click={() => goto('./exchange-rates')}>Exchange Rates</span>
 		<span class="menu-item" on:click={() => goto('./coins')}>Coins</span>
-	  </div>
+	</div>
 </div>
 
 <style lang="postcss">
@@ -144,6 +145,6 @@
 		@apply border-slate-300;
 	}
 	.menu-item {
-		@apply hover:underline hover:text-blue-900 hover:dark:text-blue-800 mr-4 cursor-pointer
+		@apply hover:underline hover:text-blue-900 hover:dark:text-blue-800 mr-4 cursor-pointer;
 	}
 </style>
