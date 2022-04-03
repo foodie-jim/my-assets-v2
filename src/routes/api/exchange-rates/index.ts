@@ -4,16 +4,17 @@ type interval = | '1m' | '2m' | '5m' | '15m' | '30m' | '60m' | '90m' | '1h' | '1
 
 export const post = async ( { request }) => {
 
-	const body = await request.json();
+	//TODO should check payload schema
 
-	console.log(body);
+	const payload = await request.json();
 
-	const from = new Date().getTime() / 1000 - 7 * 24 * 60 * 60;
-
-	const interval: interval = '1d';
+	const from = payload.from ? payload.from : new Date().getTime() / 1000 - 7 * 24 * 60 * 60;
+	const to = payload.to ? payload.to : new Date().getTime() / 1000;
+	const interval: interval = payload.interval ? payload.interval : '1d';
 
 	const queryOptions = {
 		period1: from,
+		period2: to,
 		interval
 	};
 
