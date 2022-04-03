@@ -5,6 +5,7 @@
 	import { goto } from '$app/navigation';
 	import { signOutUser, currentUserStore } from '$stores/user-store';
 	import { onDestroy, onMount } from 'svelte';
+	import { toastMessage } from '$shared/toast.svelte';
 
 	export let container = 'default-container';
 	let isDisplaySignIn = true;
@@ -49,6 +50,7 @@
 
 		signOutUser().then(() => {
 			isDisplaySignIn = true;
+			toastMessage.success('Sign Out');
 			goto('./');
 		});
 	};
