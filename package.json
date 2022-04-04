@@ -36,6 +36,7 @@
 	"type": "module",
 	"dependencies": {
 		"firebase": "^9.6.9",
+		"tailwind-scrollbar-hide": "^1.1.7",
 		"tailwindcss-ripple": "^0.7.1",
 		"yahoo-finance2": "^2.3.0"
 	}
