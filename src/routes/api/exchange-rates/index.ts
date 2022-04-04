@@ -18,13 +18,15 @@ export const post = async ( { request }) => {
 		interval
 	};
 
-	const KRW_X = await yahooFinance._chart('KRW=X', queryOptions);
-	const DX_Y_NYB = await yahooFinance._chart('DX-Y.NYB', queryOptions);
+	const a = await yahooFinance._chart('KRW=X', queryOptions);
+	const b = await yahooFinance._chart('DX=F', queryOptions);
+	const c = await yahooFinance._chart('AAPL', queryOptions);
+	const d = await yahooFinance._chart('SPY', queryOptions);
 
 	return {
 		status: 200,
 		body: {
-			data: [KRW_X, DX_Y_NYB]
+			data: [a, b, c, d]
 		}
 	};
 }
