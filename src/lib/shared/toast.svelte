@@ -89,6 +89,6 @@
 
 <style>
 	.wrap {
-		--toastContainerTop: 5.35rem;
+		--toastContainerTop: 8.35rem;
 	}
 </style>

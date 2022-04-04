@@ -21,7 +21,7 @@
 			isSignInFailed = false;
 			const form = document.getElementById('sign-in-form') as HTMLFormElement;
 			form.reset();
-			toastMessage.success(`Hello ${cred.user.displayName}`);
+			toastMessage.success(`Hello ${cred.user.email}`);
 			goto('./');
 		} else {
 			isSignInFailed = true;
