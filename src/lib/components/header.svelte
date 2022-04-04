@@ -4,23 +4,36 @@
 	import { ComponentSize } from '$shared/enums';
 	import { goto } from '$app/navigation';
 	import { signOutUser, currentUserStore } from '$stores/user-store';
+	import { currentPageStore } from '$stores/current-page-store';
 	import { onDestroy, onMount } from 'svelte';
 	import { toastMessage } from '$shared/toast.svelte';
 	import type { User } from 'firebase/auth';
+	import type { Page } from '$stores/current-page-store';
 
 	export let container = 'default-container';
+
 	let isDisplaySignIn = true;
 
 	let currentUserSubscriber = null;
+	let currentMenuSubscriber = null;
 	let currentUser = null;
+
+	let isHomeSelected,
+		isStocksSelected,
+		isExchangeRatesSelected,
+		isCoinsSelected = false;
 
 	onMount(() => {
 		currentUserSubscriber = currentUserStore.subscribe(handleUser);
+		currentMenuSubscriber = currentPageStore.subscribe(handleSelectedPage);
 	});
 
 	onDestroy(() => {
 		if (currentUserSubscriber) {
 			currentUserSubscriber();
+		}
+		if (currentMenuSubscriber) {
+			currentMenuSubscriber();
 		}
 	});
 
@@ -46,7 +59,37 @@
 		console.log('[Header] User updated', user);
 	};
 
+	//TODO Should block page and release during moving to page, related with SSR?
+
+	const handleSelectedPage = (selectedPage: Page) => {
+		isHomeSelected = isStocksSelected = isExchangeRatesSelected = isCoinsSelected = false;
+		switch (selectedPage) {
+			case 'Home':
+				isHomeSelected = true;
+				break;
+
+			case 'Stocks':
+				isStocksSelected = true;
+				break;
+
+			case 'Exchange-Rates':
+				isExchangeRatesSelected = true;
+				break;
+
+			case 'Coins':
+				isCoinsSelected = true;
+				break;
+
+			case 'Sign-in':
+				break;
+
+			case 'Sign-up':
+				break;
+		}
+	};
+
 	const handleUserTitle = () => {
+
 		// TODO Temperary sign out, but need to popup sign out menu
 
 		signOutUser().then(() => {
@@ -130,10 +173,10 @@
 		</span>
 	</div>
 	<div class="w-full my-4">
-		<span class="menu-item" on:click={() => goto('./')}>Home</span>
-		<span class="menu-item" on:click={() => goto('./stocks')}>Stocks</span>
-		<span class="menu-item" on:click={() => goto('./exchange-rates')}>Exchange Rates</span>
-		<span class="menu-item" on:click={() => goto('./coins')}>Coins</span>
+		<span class="menu-item {isHomeSelected ? 'selected' : ''}" on:click={() => goto('./')}>Home</span>
+		<span class="menu-item {isStocksSelected ? 'selected' : ''}" on:click={() => goto('./stocks')}>Stocks</span>
+		<span class="menu-item {isExchangeRatesSelected ? 'selected' : ''}" on:click={() => goto('./exchange-rates')}>Exchange Rates</span>
+		<span class="menu-item {isCoinsSelected ? 'selected' : ''}" on:click={() => goto('./coins')}>Coins</span>
 	</div>
 </div>
 
@@ -146,5 +189,11 @@
 	}
 	.menu-item {
 		@apply hover:underline hover:text-blue-900 hover:dark:text-blue-800 mr-4 cursor-pointer;
+	}
+	.menu-item.selected {
+		@apply underline underline-offset-4 font-bold text-blue-900;
+	}
+	:global(.dark) .menu-item.selected {
+		@apply text-blue-300;
 	}
 </style>

@@ -1,5 +1,12 @@
 <script lang="ts">
+	import { currentPageStore } from '$stores/current-page-store';
+	import { onMount } from 'svelte';
+
 	export let container = 'default-container';
+
+	onMount(() => {
+		currentPageStore.set('Stocks');
+	});
 </script>
 
 <div class={container}>

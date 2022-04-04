@@ -6,11 +6,18 @@
 </script>
 
 <script lang="ts">
-	export let container = 'default-container';
+	import { currentPageStore } from '$stores/current-page-store';
+	import { onMount } from 'svelte';
 
+	export let container = 'default-container';
+	
 	let password = '';
 	let email = '';
 	let isSignInFailed = false;
+
+	onMount(() => {
+		currentPageStore.set('Sign-in');
+	});
 
 	const loginSubmit = () => {
 		signInUser(email, password).then(handleUser);

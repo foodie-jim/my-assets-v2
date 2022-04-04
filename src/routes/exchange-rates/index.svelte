@@ -22,10 +22,18 @@
 </script>
 
 <script lang="ts">
+	import { currentPageStore } from '$stores/current-page-store';
+	import { onMount } from 'svelte';
+
 	export let container = 'default-container';
 	export let data = null;
 
+	onMount(() => {
+		currentPageStore.set('Exchange-Rates');
+	});
+
 	//TODO Shoul display chart
+	
 </script>
 
 <div class={container}>
