@@ -1,8 +1,7 @@
 <script lang="ts">
 	import Chart from 'chart.js/auto';
 	import type { ChartType } from 'chart.js/auto';
-	import { onMount } from 'svelte';
-	import { validate_each_argument } from 'svelte/internal';
+	import { onMount, onDestroy } from 'svelte';
 
 	export let lineData = {
 		meta: {
@@ -18,6 +17,13 @@
 			document.getElementById(`line-chart-${lineData.meta.symbol}`) as HTMLCanvasElement,
 			config
 		);
+	});
+
+	onDestroy(() => {
+		if (lineChart) {
+			//TODO Why onDestroy is called when component is initialized in server	
+			lineChart.destroy();
+		}
 	});
 
 	const generateConfig = (data) => {
@@ -49,9 +55,12 @@
 				},
 				scales: {
 					x: {
-						time: {
-							
-						}
+					
+					}
+				},
+				plugins: {
+					legend: {
+						display: false
 					}
 				}
 			}

@@ -35,7 +35,6 @@
 </script>
 
 <div class={container}>
-	<h1 class="text-3xl font-bold">Exchange Rates</h1>
 	{#each data as lineData}
 		<LineChart {lineData} />
 	{/each}
