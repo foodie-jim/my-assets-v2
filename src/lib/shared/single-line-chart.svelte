@@ -4,9 +4,9 @@
 	import { onMount, onDestroy } from 'svelte';
 
 	export let lineData = {
-		meta: {
-			symbol: ''
-		}
+		symbol: '',
+		dataGranularity: '',
+		dataset: []
 	};
 
 	let lineChart = null;
@@ -14,36 +14,31 @@
 	onMount(() => {
 		const config = generateConfig(lineData);
 		lineChart = new Chart(
-			document.getElementById(`line-chart-${lineData.meta.symbol}`) as HTMLCanvasElement,
+			document.getElementById(`line-chart-${lineData.symbol}`) as HTMLCanvasElement,
 			config
 		);
 	});
 
 	onDestroy(() => {
 		if (lineChart) {
-			//TODO Why onDestroy is called when component is initialized in server	
+			//TODO Why onDestroy is called when component is initialized in server
 			lineChart.destroy();
 		}
 	});
 
 	const generateConfig = (data) => {
-		const dataset = data.quotes.reduce((acc, cur) => {
-			acc.push({ x: cur.date, y: cur.close });
-			return acc;
-		}, []);
-		const dataGranularity = data.meta.dataGranularity;
 		const config = {
 			type: 'line' as ChartType,
 			data: {
 				datasets: [
 					{
-						label: data.meta.symbol,
+						label: data.symbol,
 						backgroundColor: 'rgba(37, 99, 235, 0.25)',
 						borderColor: 'rgb(37, 99, 235)',
 						pointBackgroundColor: 'rgb(102, 126, 234)',
 						fill: true,
 						cubicInterpolationMode: 'monotone',
-						data: dataset
+						data: data.datasets
 					}
 				]
 			},
@@ -55,7 +50,11 @@
 				},
 				scales: {
 					x: {
-					
+						time: {
+							displayFormats: {
+								quarter: 'MMM YYYY'
+							}
+						}
 					}
 				},
 				plugins: {
@@ -71,5 +70,5 @@
 </script>
 
 <div>
-	<canvas id="line-chart-{lineData.meta.symbol}" class="bg-slate-100 dark:bg-slate-800" />
+	<canvas id="line-chart-{lineData.symbol}" class="bg-slate-100 dark:bg-slate-800" />
 </div>
