@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ComponentSize, ComponentColors, ButtonType } from '$shared/enums';
+	import { ComponentSize, ComponentColors, ButtonType } from '$lib/components/enums';
 
 	export let type: ButtonType = ButtonType.Text;
 	export let size: ComponentSize = ComponentSize.Medium;

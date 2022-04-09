@@ -23,7 +23,7 @@
 
 <script lang="ts">
 	import { currentPageStore } from '$stores/current-page-store';
-	import LineChart from '$shared/single-line-chart.svelte';
+	import LineChart from '$components/single-line-chart.svelte';
 	import { onMount } from 'svelte';
 
 	export let container = 'default-container';

@@ -1,12 +1,12 @@
 <script lang="ts">
-	import Button from '$shared/button.svelte';
-	import Avatars from '$shared/avatars.svelte';
-	import { ComponentSize } from '$shared/enums';
+	import Button from '$lib/components/button.svelte';
+	import Avatars from '$lib/components/avatars.svelte';
+	import { ComponentSize } from '$lib/components/enums';
 	import { goto } from '$app/navigation';
 	import { signOutUser, currentUserStore } from '$stores/user-store';
 	import { currentPageStore } from '$stores/current-page-store';
 	import { onDestroy, onMount } from 'svelte';
-	import { toastMessage } from '$shared/toast.svelte';
+	import { toastMessage } from '$lib/components/toast.svelte';
 	import type { User } from 'firebase/auth';
 	import type { Page } from '$stores/current-page-store';
 
