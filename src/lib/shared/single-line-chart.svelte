@@ -82,6 +82,6 @@
 	};
 </script>
 
-<div>
+<div class="w-full">
 	<canvas id="line-chart-{lineData.symbol}" class="bg-slate-100 dark:bg-slate-800" />
 </div>
