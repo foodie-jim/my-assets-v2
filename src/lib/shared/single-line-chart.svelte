@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Chart from 'chart.js/auto';
 	import 'chartjs-adapter-date-fns';
-	import type { ChartType } from 'chart.js/auto';
+	import type { ChartType, TimeUnit } from 'chart.js/auto';
 	import { onMount, onDestroy } from 'svelte';
 
 	export let lineData = {
@@ -12,6 +12,7 @@
 
 	let lineChart = null;
 
+	//TODO 'config' type check error because of chart.js defect I GUESS
 	onMount(() => {
 		const config = generateConfig(lineData);
 		lineChart = new Chart(
@@ -53,7 +54,7 @@
 					x: {
 						type: 'time',
 						time: {
-							unit: 'day',
+							unit: 'day' as TimeUnit,
 							displayFormats: {
 								datetime: 'MMM d, yyyy, h:mm:ss a',
 								millisecond: 'h:mm:ss.SSS a',
