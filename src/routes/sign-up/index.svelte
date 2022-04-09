@@ -3,12 +3,12 @@
 	import { onMount } from 'svelte';
 
 	export let container = 'default-container';
-	
+
 	onMount(() => {
-		currentPageStore.set('Coins');
+		currentPageStore.set('Sign-up');
 	});
 </script>
 
 <div class={container}>
-	<h1 class="text-3xl font-bold">Coins</h1>
+	<h1 class="text-3xl font-bold">Sign-up</h1>
 </div>

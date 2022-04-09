@@ -1,8 +1,8 @@
-<script context="module">
+<script context="module" lang="ts">
 	import { toast } from '@zerodevx/svelte-toast';
 
 	const toastMessage = {
-		info: (message) => {
+		info: (message: string): void => {
 			toast.push(message, {
 				theme: {
 					'--toastBackground': '#4299e1',
@@ -11,7 +11,7 @@
 				}
 			});
 		},
-		success: (message) => {
+		success: (message: string): void => {
 			toast.push(message, {
 				theme: {
 					'--toastBackground': '#48bb78',
@@ -20,7 +20,7 @@
 				}
 			});
 		},
-		error: (message) => {
+		error: (message: string): void => {
 			toast.push(message, {
 				theme: {
 					'--toastBackground': '#f56565',
@@ -89,6 +89,6 @@
 
 <style>
 	.wrap {
-		--toastContainerTop: 5.35rem;
+		--toastContainerTop: 8.35rem;
 	}
 </style>

@@ -1,19 +1,25 @@
 <script context="module" lang="ts">
 	import { goto } from '$app/navigation';
-	import { signInUser, currentUserStore } from '$stores/user-store';
+	import { signInUser } from '$stores/user-store';
 	import { toastMessage } from '$shared/toast.svelte';
-	import { onDestroy, onMount } from 'svelte';
 	import type { UserCredential } from 'firebase/auth';
 </script>
 
 <script lang="ts">
-	export let container = 'default-container';
+	import { currentPageStore } from '$stores/current-page-store';
+	import { onMount } from 'svelte';
 
+	export let container = 'default-container';
+	
 	let password = '';
 	let email = '';
 	let isSignInFailed = false;
 
-	const loginSubmit = (e) => {
+	onMount(() => {
+		currentPageStore.set('Sign-in');
+	});
+
+	const loginSubmit = () => {
 		signInUser(email, password).then(handleUser);
 	};
 
@@ -22,7 +28,7 @@
 			isSignInFailed = false;
 			const form = document.getElementById('sign-in-form') as HTMLFormElement;
 			form.reset();
-			toastMessage.success(`Hello ${cred.user.displayName}`);
+			toastMessage.success(`Hello ${cred.user.email}`);
 			goto('./');
 		} else {
 			isSignInFailed = true;

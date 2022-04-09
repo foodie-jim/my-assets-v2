@@ -16,5 +16,4 @@
 
 <Footer container="default-container" />
 
-<style>
-</style>
+<style></style>
