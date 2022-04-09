@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Chart from 'chart.js/auto';
+	import 'chartjs-adapter-date-fns';
 	import type { ChartType } from 'chart.js/auto';
 	import { onMount, onDestroy } from 'svelte';
 
@@ -50,9 +51,20 @@
 				},
 				scales: {
 					x: {
+						type: 'time',
 						time: {
+							unit: 'day',
 							displayFormats: {
-								quarter: 'MMM YYYY'
+								datetime: 'MMM d, yyyy, h:mm:ss a',
+								millisecond: 'h:mm:ss.SSS a',
+								second: 'hh:mm:ss',
+								minute: 'hh:mm',
+								hour: 'ha',
+								day: 'MM/dd',
+								week: 'w',
+								month: 'MMM yyyy',
+								quarter: '[Q]Q - yyyy',
+								year: 'yyyy'
 							}
 						}
 					}

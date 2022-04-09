@@ -18,10 +18,10 @@
 	let currentMenuSubscriber = null;
 	let currentUser = null;
 
-	let isHomeSelected,
-		isStocksSelected,
-		isExchangeRatesSelected,
-		isCoinsSelected = false;
+	let isHomeSelected: boolean,
+		isStocksSelected: boolean,
+		isExchangeRatesSelected: boolean,
+		isCoinsSelected: boolean = false;
 
 	onMount(() => {
 		currentUserSubscriber = currentUserStore.subscribe(handleUser);
