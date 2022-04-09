@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Chart from 'chart.js/auto';
+	import Chart from 'chart.js/auto/auto.esm';
 	import 'chartjs-adapter-date-fns';
 	import type { ChartType, TimeUnit } from 'chart.js/auto';
 	import { onMount, onDestroy } from 'svelte';
