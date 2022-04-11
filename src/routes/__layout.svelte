@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Header from '$components/header.svelte';
 	import Footer from '$components/footer.svelte';
-	import Toast from '$shared/toast.svelte';
+	import Toast from '$components/toast.svelte';
 	import '$src/app.css';
 </script>
 

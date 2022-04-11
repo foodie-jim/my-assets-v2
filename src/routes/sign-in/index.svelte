@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	import { goto } from '$app/navigation';
 	import { signInUser } from '$stores/user-store';
-	import { toastMessage } from '$shared/toast.svelte';
+	import { toastMessage } from '$components/toast.svelte';
 	import type { UserCredential } from 'firebase/auth';
 </script>
 

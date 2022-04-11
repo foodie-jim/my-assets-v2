@@ -31,7 +31,6 @@
 			"$src": ["src"],
 			"$lib": ["src/lib"],
 			"$lib/*": ["src/lib/*"],
-			"$shared/*": ["src/lib/shared/*"],
 			"$components/*": ["src/lib/components/*"],
 			"$stores/*": ["src/lib/stores/*"]
 		}
