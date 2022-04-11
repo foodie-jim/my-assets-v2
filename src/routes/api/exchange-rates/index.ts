@@ -40,6 +40,8 @@ const _convertToSingleChartData = (data) => {
 	}, []);
 	return {
 		symbol: data.meta.symbol,
+		currency: data.meta.currency,
+		instrumentType: data.meta.instrumentType,
 		dataGranularity: data.meta.dataGranularity,
 		datasets: dataset
 	};
