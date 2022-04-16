@@ -1,9 +1,21 @@
 import yahooFinance from 'yahoo-finance2';
 
-type interval = | '1m' | '2m' | '5m' | '15m' | '30m' | '60m' | '90m' | '1h' | '1d' | '5d' | '1wk' | '1mo' | '3mo';
+type interval =
+	| '1m'
+	| '2m'
+	| '5m'
+	| '15m'
+	| '30m'
+	| '60m'
+	| '90m'
+	| '1h'
+	| '1d'
+	| '5d'
+	| '1wk'
+	| '1mo'
+	| '3mo';
 
-export const post = async ( { request }) => {
-
+export const post = async ({ request }) => {
 	//TODO should check payload schema
 	//TODO should take payload for chart data instead of hardcoded symbol and time
 	const payload = await request.json();
@@ -23,7 +35,12 @@ export const post = async ( { request }) => {
 	const c = await yahooFinance._chart('AAPL', queryOptions);
 	const d = await yahooFinance._chart('SPY', queryOptions);
 
-	const data = [_convertToSingleChartData(a), _convertToSingleChartData(b), _convertToSingleChartData(c), _convertToSingleChartData(d)];
+	const data = [
+		_convertToSingleChartData(a),
+		_convertToSingleChartData(b),
+		_convertToSingleChartData(c),
+		_convertToSingleChartData(d)
+	];
 
 	return {
 		status: 200,

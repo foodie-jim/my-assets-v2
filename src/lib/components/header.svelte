@@ -89,7 +89,6 @@
 	};
 
 	const handleUserTitle = () => {
-
 		// TODO Temperary sign out, but need to popup sign out menu
 
 		signOutUser().then(() => {
@@ -173,10 +172,19 @@
 		</span>
 	</div>
 	<div class="w-full my-4">
-		<span class="menu-item {isHomeSelected ? 'selected' : ''}" on:click={() => goto('./')}>Home</span>
-		<span class="menu-item {isStocksSelected ? 'selected' : ''}" on:click={() => goto('./stocks')}>Stocks</span>
-		<span class="menu-item {isExchangeRatesSelected ? 'selected' : ''}" on:click={() => goto('./exchange-rates')}>Exchange Rates</span>
-		<span class="menu-item {isCoinsSelected ? 'selected' : ''}" on:click={() => goto('./coins')}>Coins</span>
+		<span class="menu-item {isHomeSelected ? 'selected' : ''}" on:click={() => goto('./')}
+			>Home</span
+		>
+		<span class="menu-item {isStocksSelected ? 'selected' : ''}" on:click={() => goto('./stocks')}
+			>Stocks</span
+		>
+		<span
+			class="menu-item {isExchangeRatesSelected ? 'selected' : ''}"
+			on:click={() => goto('./exchange-rates')}>Exchange Rates</span
+		>
+		<span class="menu-item {isCoinsSelected ? 'selected' : ''}" on:click={() => goto('./coins')}
+			>Coins</span
+		>
 	</div>
 </div>
 

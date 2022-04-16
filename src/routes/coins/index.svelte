@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 
 	export let container = 'default-container';
-	
+
 	onMount(() => {
 		currentPageStore.set('Coins');
 	});

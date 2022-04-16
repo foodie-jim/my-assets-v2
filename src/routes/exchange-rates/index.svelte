@@ -12,7 +12,6 @@
 			}
 		});
 		const body = await response.json();
-
 		return {
 			props: {
 				data: body.data
@@ -25,20 +24,26 @@
 	import Card from '$lib/components/card.svelte';
 	import LineChart from '$components/single-line-chart.svelte';
 	import { currentPageStore } from '$stores/current-page-store';
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 
 	export let container = 'default-container';
 	export let data = [];
+	let graphData = [];
 
 	onMount(() => {
+		graphData = data;
 		currentPageStore.set('Exchange-Rates');
 	});
+
+	onDestroy(() => {});
 </script>
 
 <div class="{container} grid gap-4 grid-cols-1 xl:grid-cols-2 2xl:grid-cols-2 3xl:grid-cols-3">
-	{#each data as lineData}
+	{#each graphData as lineData}
 		<Card name={lineData.symbol}>
 			<LineChart {lineData} />
 		</Card>
+	{:else}
+		<h1>Loading...</h1>
 	{/each}
 </div>
