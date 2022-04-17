@@ -7,8 +7,10 @@
 	import { onMount, onDestroy } from 'svelte';
 
 	export let lineData = {
-		symbol: '',
-		dataGranularity: '',
+		meta: {
+			symbol: '',
+			dataGranularity: '',
+		},
 		dataset: []
 	};
 
@@ -20,7 +22,7 @@
 		Chart.register(CrosshairPlugin);
 		Interaction.modes.interpolate = Interpolate;
 		lineChart = new Chart(
-			document.getElementById(`line-chart-${lineData.symbol}`) as HTMLCanvasElement,
+			document.getElementById(`line-chart-${lineData.meta.symbol}`) as HTMLCanvasElement,
 			config
 		);
 	});
@@ -105,5 +107,5 @@
 </script>
 
 <div class="w-full">
-	<canvas id="line-chart-{lineData.symbol}" class="bg-slate-100 dark:bg-slate-800" />
+	<canvas id="line-chart-{lineData.meta.symbol}" class="bg-slate-100 dark:bg-slate-800" />
 </div>

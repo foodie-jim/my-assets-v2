@@ -15,7 +15,7 @@
 
 <div class="grid gap-4 grid-cols-1 xl:grid-cols-2 2xl:grid-cols-2 3xl:grid-cols-3">
 	{#each graphData as lineData}
-		<Card name={lineData.symbol}>
+		<Card name={lineData.meta.symbol} value={lineData.meta.unit + lineData.meta.regularMarketPrice}>
 			<LineChart {lineData} />
 		</Card>
 	{:else}
