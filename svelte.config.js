@@ -21,7 +21,7 @@ const config = {
 					$stores: path.resolve('./src/lib/stores')
 				}
 			}
-		}
+		},
 	}
 };
 

@@ -1,12 +1,16 @@
 <script lang="ts">
 	import Chart from 'chart.js/auto/auto.esm';
+	import { Interaction } from 'chart.js';
+	import { CrosshairPlugin, Interpolate } from 'chartjs-plugin-crosshair';
 	import 'chartjs-adapter-date-fns';
 	import type { ChartType, TimeUnit } from 'chart.js/auto';
 	import { onMount, onDestroy } from 'svelte';
 
 	export let lineData = {
-		symbol: '',
-		dataGranularity: '',
+		meta: {
+			symbol: '',
+			dataGranularity: '',
+		},
 		dataset: []
 	};
 
@@ -15,8 +19,10 @@
 	//TODO 'config' type check error because of chart.js defect I GUESS
 	onMount(() => {
 		const config = generateConfig(lineData);
+		Chart.register(CrosshairPlugin);
+		Interaction.modes.interpolate = Interpolate;
 		lineChart = new Chart(
-			document.getElementById(`line-chart-${lineData.symbol}`) as HTMLCanvasElement,
+			document.getElementById(`line-chart-${lineData.meta.symbol}`) as HTMLCanvasElement,
 			config
 		);
 	});
@@ -73,6 +79,24 @@
 				plugins: {
 					legend: {
 						display: false
+					},
+					tooltip: {
+						mode: 'interpolate',
+						intersect: false
+					},
+					crosshair: {
+						line: {
+							color: '#F66',
+							width: 1
+						},
+						sync: {
+							enabled: true,
+							group: 1,
+							suppressTooltips: true
+						},
+						zoom: {
+							enabled: false
+						}
 					}
 				}
 			}
@@ -83,5 +107,5 @@
 </script>
 
 <div class="w-full">
-	<canvas id="line-chart-{lineData.symbol}" class="bg-slate-100 dark:bg-slate-800" />
+	<canvas id="line-chart-{lineData.meta.symbol}" class="bg-slate-100 dark:bg-slate-800" />
 </div>

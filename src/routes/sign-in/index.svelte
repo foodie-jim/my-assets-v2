@@ -10,7 +10,7 @@
 	import { onMount } from 'svelte';
 
 	export let container = 'default-container';
-	
+
 	let password = '';
 	let email = '';
 	let isSignInFailed = false;

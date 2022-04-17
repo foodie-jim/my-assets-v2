@@ -19,8 +19,5 @@ module.exports = {
 			colors: theme('colors')
 		})
 	},
-	plugins: [
-		require('tailwindcss-ripple')(),
-		require('tailwind-scrollbar-hide')
-	]
+	plugins: [require('tailwindcss-ripple')(), require('tailwind-scrollbar-hide')]
 };
