@@ -10,7 +10,7 @@
 	import PageTransition from '$components/page-transition.svelte';
 	import '$src/app.css';
 
-	export let url;
+	export let url: string;
 </script>
 
 <svelte:head>

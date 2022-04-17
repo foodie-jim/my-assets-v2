@@ -3,7 +3,7 @@
 	import { Interaction } from 'chart.js';
 	import { CrosshairPlugin, Interpolate } from 'chartjs-plugin-crosshair';
 	import 'chartjs-adapter-date-fns';
-	import type { ChartType, TimeUnit } from 'chart.js/auto';
+	import type { ChartType, TimeUnit, ChartConfiguration } from 'chart.js/auto';
 	import { onMount, onDestroy } from 'svelte';
 
 	export let lineData = {
@@ -23,7 +23,7 @@
 		Interaction.modes.interpolate = Interpolate;
 		lineChart = new Chart(
 			document.getElementById(`line-chart-${lineData.meta.symbol}`) as HTMLCanvasElement,
-			config
+			config as ChartConfiguration,
 		);
 	});
 
